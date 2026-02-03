@@ -1,16 +1,16 @@
 {
   "wake_windows": [
-    150,
-    165,
-    165
+    164,
+    159,
+    162
   ],
   "nap_durations": [
-    75,
-    90,
-    30
+    33,
+    50,
+    72
   ],
   "typical_naps_count": 3,
-  "night_sleep_window": 141,
+  "night_sleep_window": 155,
   "trained_on": "2026-02-03",
-  "days_count": 7
+  "days_count": 12
 }

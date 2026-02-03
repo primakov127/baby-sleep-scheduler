@@ -128,7 +128,8 @@ def predict(wake_time: str, model: dict[str, Any] | None = None) -> dict[str, An
     schedule = {
         "wake_time": wake_time,
         "naps": [],
-        "night_sleep": None
+        "night_sleep": None,
+        "night_predicted": True
     }
 
     current_time = parse_time(wake_time)
@@ -167,7 +168,8 @@ def recalculate(
     schedule = {
         "wake_time": wake_time,
         "naps": [],
-        "night_sleep": None
+        "night_sleep": None,
+        "night_predicted": True
     }
 
     corrections_by_index = {c["nap_number"] - 1: c for c in corrections}

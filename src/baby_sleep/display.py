@@ -49,12 +49,13 @@ def show_schedule(schedule: dict[str, Any], title: str = "Predicted Schedule for
             status
         )
 
+    night_status = "[yellow]Predicted[/yellow]" if schedule.get("night_predicted", True) else "[green]Actual[/green]"
     table.add_row(
         "Night",
         schedule["night_sleep"],
         "-",
         "-",
-        "[yellow]Predicted[/yellow]"
+        night_status
     )
 
     console.print()

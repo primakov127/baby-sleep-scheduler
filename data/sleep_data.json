@@ -1,255 +1,372 @@
 {
   "baby_info": {
-    "name": "Baby",
-    "birth_date": "2024-06-01"
+    "name": "M",
+    "birth_date": "2025-09-01"
   },
   "days": [
     {
-      "date": "2025-01-15",
-      "morning_wake": "07:00",
+      "date": "2026-01-22",
+      "morning_wake": "07:38",
       "naps": [
         {
-          "start": "09:30",
-          "end": "10:45",
+          "start": "09:29",
+          "end": "10:14",
+          "predicted": false
+        },
+        {
+          "start": "12:39",
+          "end": "14:02",
+          "predicted": false
+        },
+        {
+          "start": "16:39",
+          "end": "17:52",
+          "predicted": false
+        }
+      ],
+      "night_sleep": "20:18",
+      "feeds": {
+        "bottles": 6,
+        "total_ml": 930,
+        "food_grams": 0
+      }
+    },
+    {
+      "date": "2026-01-23",
+      "morning_wake": "06:20",
+      "naps": [
+        {
+          "start": "10:18",
+          "end": "10:56",
           "predicted": false
         },
         {
           "start": "13:30",
-          "end": "15:00",
-          "predicted": false
-        },
-        {
-          "start": "17:45",
-          "end": "18:15",
+          "end": "15:09",
           "predicted": false
         }
       ],
-      "night_sleep": "20:15",
-      "feeds": [
-        "07:30",
-        "10:00",
-        "12:30",
-        "15:00",
-        "18:00"
-      ]
+      "night_sleep": "18:21",
+      "feeds": {
+        "bottles": 5,
+        "total_ml": 730,
+        "food_grams": 0
+      }
     },
     {
-      "date": "2025-01-16",
-      "morning_wake": "06:45",
+      "date": "2026-01-24",
+      "morning_wake": "05:35",
       "naps": [
         {
-          "start": "09:15",
-          "end": "10:30",
+          "start": "08:55",
+          "end": "09:32",
           "predicted": false
         },
         {
-          "start": "13:15",
-          "end": "14:45",
-          "predicted": false
-        },
-        {
-          "start": "17:30",
-          "end": "18:00",
+          "start": "12:11",
+          "end": "13:49",
           "predicted": false
         }
       ],
-      "night_sleep": "20:00",
-      "feeds": [
-        "07:00",
-        "09:45",
-        "12:15",
-        "14:45",
-        "17:45"
-      ]
+      "night_sleep": "18:28",
+      "feeds": {
+        "bottles": 5,
+        "total_ml": 745,
+        "food_grams": 0
+      }
     },
     {
-      "date": "2025-01-17",
-      "morning_wake": "07:15",
+      "date": "2026-01-25",
+      "morning_wake": "06:39",
       "naps": [
         {
-          "start": "09:45",
-          "end": "11:00",
+          "start": "08:18",
+          "end": "08:49",
           "predicted": false
         },
         {
-          "start": "13:45",
-          "end": "15:15",
+          "start": "11:39",
+          "end": "12:09",
           "predicted": false
         },
         {
-          "start": "18:00",
-          "end": "18:30",
+          "start": "14:41",
+          "end": "16:00",
           "predicted": false
         }
       ],
-      "night_sleep": "20:30",
-      "feeds": [
-        "07:30",
-        "10:15",
-        "12:45",
-        "15:15",
-        "18:15"
-      ]
+      "night_sleep": "18:39",
+      "feeds": {
+        "bottles": 6,
+        "total_ml": 705,
+        "food_grams": 50
+      }
     },
     {
-      "date": "2025-01-18",
-      "morning_wake": "07:00",
+      "date": "2026-01-26",
+      "morning_wake": "06:24",
+      "naps": [
+        {
+          "start": "09:29",
+          "end": "09:59",
+          "predicted": false
+        },
+        {
+          "start": "12:33",
+          "end": "13:44",
+          "predicted": false
+        },
+        {
+          "start": "16:43",
+          "end": "16:56",
+          "predicted": false
+        }
+      ],
+      "night_sleep": "19:21",
+      "feeds": {
+        "bottles": 6,
+        "total_ml": 837,
+        "food_grams": 0
+      }
+    },
+    {
+      "date": "2026-01-27",
+      "morning_wake": "06:00",
+      "naps": [
+        {
+          "start": "09:22",
+          "end": "09:56",
+          "predicted": false
+        },
+        {
+          "start": "12:36",
+          "end": "13:05",
+          "predicted": false
+        },
+        {
+          "start": "15:38",
+          "end": "17:08",
+          "predicted": false
+        }
+      ],
+      "night_sleep": "19:34",
+      "feeds": {
+        "bottles": 5,
+        "total_ml": 715,
+        "food_grams": 0
+      }
+    },
+    {
+      "date": "2026-01-28",
+      "morning_wake": "06:53",
+      "naps": [
+        {
+          "start": "08:42",
+          "end": "09:14",
+          "predicted": false
+        },
+        {
+          "start": "11:56",
+          "end": "12:34",
+          "predicted": false
+        },
+        {
+          "start": "15:17",
+          "end": "16:43",
+          "predicted": false
+        }
+      ],
+      "night_sleep": "19:23",
+      "feeds": {
+        "bottles": 5,
+        "total_ml": 735,
+        "food_grams": 0
+      }
+    },
+    {
+      "date": "2026-01-29",
+      "morning_wake": "06:11",
       "naps": [
         {
           "start": "09:30",
-          "end": "10:45",
+          "end": "09:56",
           "predicted": false
         },
         {
-          "start": "13:30",
-          "end": "15:00",
+          "start": "12:40",
+          "end": "13:13",
+          "predicted": false
+        },
+        {
+          "start": "15:59",
+          "end": "16:40",
           "predicted": false
         }
       ],
-      "night_sleep": "19:30",
-      "feeds": [
-        "07:15",
-        "10:00",
-        "12:30",
-        "15:00",
-        "18:00"
-      ]
+      "night_sleep": "19:06",
+      "feeds": {
+        "bottles": 5,
+        "total_ml": 685,
+        "food_grams": 0
+      }
     },
     {
-      "date": "2025-01-19",
-      "morning_wake": "06:30",
+      "date": "2026-01-30",
+      "morning_wake": "06:32",
       "naps": [
         {
-          "start": "09:00",
+          "start": "08:52",
+          "end": "09:18",
+          "predicted": false
+        },
+        {
+          "start": "11:59",
+          "end": "12:38",
+          "predicted": false
+        },
+        {
+          "start": "15:10",
+          "end": "17:04",
+          "predicted": false
+        }
+      ],
+      "night_sleep": "19:31",
+      "feeds": {
+        "bottles": 6,
+        "total_ml": 840,
+        "food_grams": 60
+      }
+    },
+    {
+      "date": "2026-01-31",
+      "morning_wake": "06:56",
+      "naps": [
+        {
+          "start": "09:09",
+          "end": "09:46",
+          "predicted": false
+        },
+        {
+          "start": "12:36",
+          "end": "13:03",
+          "predicted": false
+        },
+        {
+          "start": "15:43",
+          "end": "16:55",
+          "predicted": false
+        }
+      ],
+      "night_sleep": "18:50",
+      "feeds": {
+        "bottles": 4,
+        "total_ml": 640,
+        "food_grams": 0
+      }
+    },
+    {
+      "date": "2026-02-01",
+      "morning_wake": "06:14",
+      "naps": [
+        {
+          "start": "09:34",
           "end": "10:15",
           "predicted": false
         },
         {
-          "start": "13:00",
-          "end": "14:30",
+          "start": "12:57",
+          "end": "13:36",
           "predicted": false
         },
         {
-          "start": "17:15",
-          "end": "17:45",
+          "start": "16:40",
+          "end": "18:11",
           "predicted": false
         }
       ],
-      "night_sleep": "19:45",
-      "feeds": [
-        "06:45",
-        "09:30",
-        "12:00",
-        "14:30",
-        "17:30"
-      ]
+      "night_sleep": "19:39",
+      "feeds": {
+        "bottles": 6,
+        "total_ml": 900,
+        "food_grams": 0
+      }
     },
     {
-      "date": "2025-01-20",
-      "morning_wake": "07:30",
+      "date": "2026-02-02",
+      "morning_wake": "06:23",
       "naps": [
         {
-          "start": "10:00",
-          "end": "11:15",
+          "start": "09:01",
+          "end": "09:29",
           "predicted": false
         },
         {
-          "start": "14:00",
-          "end": "15:30",
+          "start": "11:57",
+          "end": "12:21",
           "predicted": false
         },
         {
-          "start": "18:15",
-          "end": "18:45",
+          "start": "15:03",
+          "end": "16:06",
           "predicted": false
         }
       ],
-      "night_sleep": "20:45",
-      "feeds": [
-        "07:45",
-        "10:30",
-        "13:00",
-        "15:30",
-        "18:30"
-      ]
-    },
-    {
-      "date": "2025-01-21",
-      "morning_wake": "07:00",
-      "naps": [
-        {
-          "start": "09:30",
-          "end": "10:45",
-          "predicted": false
-        },
-        {
-          "start": "13:30",
-          "end": "15:00",
-          "predicted": false
-        },
-        {
-          "start": "17:45",
-          "end": "18:15",
-          "predicted": false
-        }
-      ],
-      "night_sleep": "20:15",
-      "feeds": [
-        "07:15",
-        "10:00",
-        "12:30",
-        "15:00",
-        "18:00"
-      ]
+      "night_sleep": "18:30",
+      "feeds": {
+        "bottles": 5,
+        "total_ml": 705,
+        "food_grams": 0
+      }
     },
     {
       "date": "2026-02-03",
-      "morning_wake": "07:00",
+      "morning_wake": "06:30",
       "naps": [
         {
-          "start": "09:30",
-          "end": "10:30",
-          "duration_minutes": 60,
+          "start": "09:00",
+          "end": "09:40",
+          "duration_minutes": 40,
           "predicted": false
         },
         {
-          "start": "13:15",
-          "end": "14:45",
-          "duration_minutes": 90,
-          "predicted": true
+          "start": "12:22",
+          "end": "12:56",
+          "duration_minutes": 34,
+          "predicted": false
         },
         {
-          "start": "17:30",
-          "end": "18:00",
-          "duration_minutes": 30,
-          "predicted": true
+          "start": "15:30",
+          "end": "17:04",
+          "duration_minutes": 94,
+          "predicted": false
         }
       ],
-      "night_sleep": null,
+      "night_sleep": "19:00",
       "feeds": [],
       "predictions": {
-        "wake_time": "07:00",
+        "wake_time": "06:30",
         "naps": [
           {
-            "start": "09:30",
-            "end": "10:30",
-            "duration_minutes": 60,
+            "start": "09:00",
+            "end": "09:40",
+            "duration_minutes": 40,
             "predicted": false
           },
           {
-            "start": "13:15",
-            "end": "14:45",
-            "duration_minutes": 90,
-            "predicted": true
+            "start": "12:22",
+            "end": "12:56",
+            "duration_minutes": 34,
+            "predicted": false
           },
           {
-            "start": "17:30",
-            "end": "18:00",
-            "duration_minutes": 30,
-            "predicted": true
+            "start": "15:30",
+            "end": "17:04",
+            "duration_minutes": 94,
+            "predicted": false
           }
         ],
-        "night_sleep": "20:21"
+        "night_sleep": "19:00",
+        "night_predicted": false
       }
     }
   ]

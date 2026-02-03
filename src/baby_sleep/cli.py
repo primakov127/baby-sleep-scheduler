@@ -55,22 +55,22 @@ def predict(wake_time: str):
 
 
 @cli.command()
-@click.argument("nap_number", type=int)
+@click.argument("target")
 @click.argument("start")
 @click.argument("end", required=False)
-def correct(nap_number: int, start: str, end: str | None):
-    """Correct actual nap time and recalculate remaining predictions.
+def correct(target: str, start: str, end: str | None):
+    """Correct actual nap or night sleep time.
 
-    NAP_NUMBER is the nap to correct (1, 2, 3, etc.)
+    TARGET is either a nap number (1, 2, 3) or 'night'
     START is the actual start time (HH:MM)
-    END is the optional actual end time (HH:MM)
+    END is the optional actual end time (HH:MM) - only for naps
+
+    Examples:
+      baby-sleep correct 1 09:30 10:45    # Correct nap 1
+      baby-sleep correct night 19:30      # Correct night sleep
     """
     if not data.validate_time(start):
-        display.error("Invalid start time format. Use HH:MM (e.g., 09:30)")
-        return
-
-    if end and not data.validate_time(end):
-        display.error("Invalid end time format. Use HH:MM (e.g., 10:45)")
+        display.error("Invalid time format. Use HH:MM (e.g., 09:30)")
         return
 
     sleep_data = data.load_data()
@@ -78,6 +78,29 @@ def correct(nap_number: int, start: str, end: str | None):
 
     if not today.get("morning_wake"):
         display.error("No prediction for today. Run 'baby-sleep predict <wake_time>' first.")
+        return
+
+    # Handle night sleep correction
+    if target.lower() == "night":
+        today["night_sleep"] = start
+        if today.get("predictions"):
+            today["predictions"]["night_sleep"] = start
+            today["predictions"]["night_predicted"] = False
+        data.save_data(sleep_data)
+        display.success(f"Night sleep updated: {start}")
+        if today.get("predictions"):
+            display.show_schedule(today["predictions"], "Updated Schedule")
+        return
+
+    # Handle nap correction
+    try:
+        nap_number = int(target)
+    except ValueError:
+        display.error("TARGET must be a nap number (1, 2, 3) or 'night'")
+        return
+
+    if end and not data.validate_time(end):
+        display.error("Invalid end time format. Use HH:MM (e.g., 10:45)")
         return
 
     trained_model = model.load_model()
@@ -104,6 +127,11 @@ def correct(nap_number: int, start: str, end: str | None):
     corrections.append(new_correction)
 
     schedule = model.recalculate(today["morning_wake"], corrections, trained_model)
+
+    # Preserve night sleep correction if it was already set
+    if today.get("predictions") and not today["predictions"].get("night_predicted", True):
+        schedule["night_sleep"] = today["predictions"]["night_sleep"]
+        schedule["night_predicted"] = False
 
     today["predictions"] = schedule
     today["naps"] = schedule["naps"]
