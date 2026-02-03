@@ -1,0 +1,16 @@
+{
+  "wake_windows": [
+    150,
+    165,
+    165
+  ],
+  "nap_durations": [
+    75,
+    90,
+    30
+  ],
+  "typical_naps_count": 3,
+  "night_sleep_window": 141,
+  "trained_on": "2026-02-03",
+  "days_count": 7
+}

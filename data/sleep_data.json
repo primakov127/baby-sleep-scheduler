@@ -1,0 +1,256 @@
+{
+  "baby_info": {
+    "name": "Baby",
+    "birth_date": "2024-06-01"
+  },
+  "days": [
+    {
+      "date": "2025-01-15",
+      "morning_wake": "07:00",
+      "naps": [
+        {
+          "start": "09:30",
+          "end": "10:45",
+          "predicted": false
+        },
+        {
+          "start": "13:30",
+          "end": "15:00",
+          "predicted": false
+        },
+        {
+          "start": "17:45",
+          "end": "18:15",
+          "predicted": false
+        }
+      ],
+      "night_sleep": "20:15",
+      "feeds": [
+        "07:30",
+        "10:00",
+        "12:30",
+        "15:00",
+        "18:00"
+      ]
+    },
+    {
+      "date": "2025-01-16",
+      "morning_wake": "06:45",
+      "naps": [
+        {
+          "start": "09:15",
+          "end": "10:30",
+          "predicted": false
+        },
+        {
+          "start": "13:15",
+          "end": "14:45",
+          "predicted": false
+        },
+        {
+          "start": "17:30",
+          "end": "18:00",
+          "predicted": false
+        }
+      ],
+      "night_sleep": "20:00",
+      "feeds": [
+        "07:00",
+        "09:45",
+        "12:15",
+        "14:45",
+        "17:45"
+      ]
+    },
+    {
+      "date": "2025-01-17",
+      "morning_wake": "07:15",
+      "naps": [
+        {
+          "start": "09:45",
+          "end": "11:00",
+          "predicted": false
+        },
+        {
+          "start": "13:45",
+          "end": "15:15",
+          "predicted": false
+        },
+        {
+          "start": "18:00",
+          "end": "18:30",
+          "predicted": false
+        }
+      ],
+      "night_sleep": "20:30",
+      "feeds": [
+        "07:30",
+        "10:15",
+        "12:45",
+        "15:15",
+        "18:15"
+      ]
+    },
+    {
+      "date": "2025-01-18",
+      "morning_wake": "07:00",
+      "naps": [
+        {
+          "start": "09:30",
+          "end": "10:45",
+          "predicted": false
+        },
+        {
+          "start": "13:30",
+          "end": "15:00",
+          "predicted": false
+        }
+      ],
+      "night_sleep": "19:30",
+      "feeds": [
+        "07:15",
+        "10:00",
+        "12:30",
+        "15:00",
+        "18:00"
+      ]
+    },
+    {
+      "date": "2025-01-19",
+      "morning_wake": "06:30",
+      "naps": [
+        {
+          "start": "09:00",
+          "end": "10:15",
+          "predicted": false
+        },
+        {
+          "start": "13:00",
+          "end": "14:30",
+          "predicted": false
+        },
+        {
+          "start": "17:15",
+          "end": "17:45",
+          "predicted": false
+        }
+      ],
+      "night_sleep": "19:45",
+      "feeds": [
+        "06:45",
+        "09:30",
+        "12:00",
+        "14:30",
+        "17:30"
+      ]
+    },
+    {
+      "date": "2025-01-20",
+      "morning_wake": "07:30",
+      "naps": [
+        {
+          "start": "10:00",
+          "end": "11:15",
+          "predicted": false
+        },
+        {
+          "start": "14:00",
+          "end": "15:30",
+          "predicted": false
+        },
+        {
+          "start": "18:15",
+          "end": "18:45",
+          "predicted": false
+        }
+      ],
+      "night_sleep": "20:45",
+      "feeds": [
+        "07:45",
+        "10:30",
+        "13:00",
+        "15:30",
+        "18:30"
+      ]
+    },
+    {
+      "date": "2025-01-21",
+      "morning_wake": "07:00",
+      "naps": [
+        {
+          "start": "09:30",
+          "end": "10:45",
+          "predicted": false
+        },
+        {
+          "start": "13:30",
+          "end": "15:00",
+          "predicted": false
+        },
+        {
+          "start": "17:45",
+          "end": "18:15",
+          "predicted": false
+        }
+      ],
+      "night_sleep": "20:15",
+      "feeds": [
+        "07:15",
+        "10:00",
+        "12:30",
+        "15:00",
+        "18:00"
+      ]
+    },
+    {
+      "date": "2026-02-03",
+      "morning_wake": "07:00",
+      "naps": [
+        {
+          "start": "09:30",
+          "end": "10:30",
+          "duration_minutes": 60,
+          "predicted": false
+        },
+        {
+          "start": "13:15",
+          "end": "14:45",
+          "duration_minutes": 90,
+          "predicted": true
+        },
+        {
+          "start": "17:30",
+          "end": "18:00",
+          "duration_minutes": 30,
+          "predicted": true
+        }
+      ],
+      "night_sleep": null,
+      "feeds": [],
+      "predictions": {
+        "wake_time": "07:00",
+        "naps": [
+          {
+            "start": "09:30",
+            "end": "10:30",
+            "duration_minutes": 60,
+            "predicted": false
+          },
+          {
+            "start": "13:15",
+            "end": "14:45",
+            "duration_minutes": 90,
+            "predicted": true
+          },
+          {
+            "start": "17:30",
+            "end": "18:00",
+            "duration_minutes": 30,
+            "predicted": true
+          }
+        ],
+        "night_sleep": "20:21"
+      }
+    }
+  ]
+}
