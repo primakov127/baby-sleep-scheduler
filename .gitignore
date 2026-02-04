@@ -8,6 +8,16 @@ build/
 *.egg
 .pytest_cache/
 
+# macOS
+.DS_Store
+
+# Claude Code
+.claude/
+
+# User data and trained models
+data/
+models/
+
 # Google Calendar credentials (sensitive)
 credentials.json
 token.json
