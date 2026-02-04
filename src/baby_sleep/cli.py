@@ -3,7 +3,7 @@
 import click
 from datetime import date
 
-from . import data, model, display
+from . import data, model, display, calendar
 
 
 @click.group()
@@ -228,6 +228,91 @@ def history(days: int):
         return
 
     display.show_history(historical, limit=days)
+
+
+@cli.command()
+@click.option("--setup", is_flag=True, help="Show Google Calendar setup instructions")
+@click.option("-c", "--calendar", "calendar_id", default="primary",
+              help="Calendar ID to sync to (default: primary)")
+def sync(setup: bool, calendar_id: str):
+    """Sync today's sleep events to Google Calendar.
+
+    Use --setup to configure Google Calendar credentials.
+
+    Examples:
+      baby-sleep sync --setup    # Show setup instructions
+      baby-sleep sync            # Sync to primary calendar
+      baby-sleep sync -c work    # Sync to 'work' calendar
+    """
+    if setup:
+        calendar.setup_credentials_interactive()
+        return
+
+    # Check if credentials exist
+    if not calendar.credentials_exist():
+        display.error("Google Calendar not configured.")
+        display.info("Run 'baby-sleep sync --setup' for setup instructions.")
+        return
+
+    # Get calendar service
+    display.info("Connecting to Google Calendar...")
+    service = calendar.get_calendar_service()
+    if not service:
+        display.error("Failed to authenticate with Google Calendar.")
+        display.info("Run 'baby-sleep sync --setup' for setup instructions.")
+        return
+
+    # Load today's data
+    sleep_data = data.load_data()
+    today = data.get_today(sleep_data)
+
+    if not today.get("morning_wake"):
+        display.error("No prediction for today.")
+        display.info("Run 'baby-sleep predict <wake_time>' first.")
+        return
+
+    if not today.get("predictions"):
+        display.error("No schedule to sync.")
+        display.info("Run 'baby-sleep predict <wake_time>' first.")
+        return
+
+    # Load model for night sleep duration
+    trained_model = model.load_model()
+
+    # Get existing event IDs
+    existing_ids = today.get("calendar_event_ids", {})
+
+    # Sync to calendar
+    display.info(f"Syncing to calendar: {calendar_id}")
+    try:
+        event_ids = calendar.sync_day_to_calendar(
+            service,
+            calendar_id,
+            today,
+            trained_model,
+            existing_ids
+        )
+    except Exception as e:
+        display.error(f"Failed to sync: {e}")
+        return
+
+    # Save updated event IDs
+    today["calendar_event_ids"] = event_ids
+    data.save_data(sleep_data)
+
+    # Report results
+    naps_synced = sum(1 for k in event_ids if k.startswith("nap_"))
+    night_synced = "night" in event_ids
+
+    display.success("Calendar sync complete!")
+    if naps_synced:
+        display.info(f"  Naps synced: {naps_synced}")
+    if night_synced:
+        wake_time = model.predict_wake_time(
+            today["predictions"]["night_sleep"],
+            trained_model
+        )
+        display.info(f"  Night sleep synced (predicted wake: {wake_time})")
 
 
 if __name__ == "__main__":

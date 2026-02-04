@@ -20,6 +20,7 @@ def get_default_model() -> dict[str, Any]:
         "nap_durations": [75, 90, 45],
         "typical_naps_count": 3,
         "night_sleep_window": 120,
+        "night_sleep_duration": 660,  # 11 hours default
         "trained_on": None,
         "days_count": 0
     }
@@ -62,9 +63,13 @@ def train(data: dict[str, Any]) -> dict[str, Any]:
     wake_windows_by_nap: dict[int, list[int]] = {}
     nap_durations_by_nap: dict[int, list[int]] = {}
     night_windows: list[int] = []
+    night_durations: list[int] = []
     nap_counts: list[int] = []
 
-    for day in days:
+    # Sort days by date for consecutive day analysis
+    sorted_days = sorted(days, key=lambda d: d["date"])
+
+    for day in sorted_days:
         naps = day["naps"]
         if not naps:
             continue
@@ -90,6 +95,29 @@ def train(data: dict[str, Any]) -> dict[str, Any]:
             night_window = time_diff_minutes(last_nap_end, day["night_sleep"])
             night_windows.append(night_window)
 
+    # Calculate night sleep duration from consecutive days
+    days_by_date = {d["date"]: d for d in sorted_days}
+    for day in sorted_days:
+        if not day.get("night_sleep"):
+            continue
+
+        # Find next day
+        current_date = date.fromisoformat(day["date"])
+        next_date = (current_date + timedelta(days=1)).isoformat()
+
+        if next_date in days_by_date:
+            next_day = days_by_date[next_date]
+            if next_day.get("morning_wake"):
+                # Calculate duration from night_sleep to next morning_wake
+                # Night sleep is in the evening, wake is next morning
+                night_time = datetime.strptime(day["night_sleep"], "%H:%M")
+                wake_time = datetime.strptime(next_day["morning_wake"], "%H:%M")
+
+                # Add 24 hours to wake time since it's the next day
+                duration = (24 * 60 - night_time.hour * 60 - night_time.minute) + \
+                           (wake_time.hour * 60 + wake_time.minute)
+                night_durations.append(duration)
+
     typical_naps = int(np.median(nap_counts)) if nap_counts else 3
     wake_windows = []
     nap_durations = []
@@ -106,12 +134,14 @@ def train(data: dict[str, Any]) -> dict[str, Any]:
             nap_durations.append(75 if i == 0 else 90 if i == 1 else 45)
 
     night_sleep_window = int(np.mean(night_windows)) if night_windows else 120
+    night_sleep_duration = int(np.mean(night_durations)) if night_durations else 660
 
     model = {
         "wake_windows": wake_windows,
         "nap_durations": nap_durations,
         "typical_naps_count": typical_naps,
         "night_sleep_window": night_sleep_window,
+        "night_sleep_duration": night_sleep_duration,
         "trained_on": date.today().isoformat(),
         "days_count": len(days)
     }
@@ -154,6 +184,18 @@ def predict(wake_time: str, model: dict[str, Any] | None = None) -> dict[str, An
     schedule["night_sleep"] = format_time(night_time)
 
     return schedule
+
+
+def predict_wake_time(night_sleep: str, model: dict[str, Any] | None = None) -> str:
+    """Predict morning wake time based on night sleep start and learned duration."""
+    if model is None:
+        model = load_model()
+
+    night_time = parse_time(night_sleep)
+    duration = model.get("night_sleep_duration", 660)
+    wake_time = night_time + timedelta(minutes=duration)
+
+    return format_time(wake_time)
 
 
 def recalculate(

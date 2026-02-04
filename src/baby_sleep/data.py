@@ -88,9 +88,14 @@ def get_today(data: dict[str, Any]) -> dict[str, Any]:
             "naps": [],
             "night_sleep": None,
             "feeds": [],
-            "predictions": None
+            "predictions": None,
+            "calendar_event_ids": {}
         }
         data["days"].append(day)
+
+    # Ensure calendar_event_ids exists for older records
+    if "calendar_event_ids" not in day:
+        day["calendar_event_ids"] = {}
 
     return day
 
@@ -111,7 +116,8 @@ def add_day(
         "morning_wake": morning_wake,
         "naps": naps,
         "night_sleep": night_sleep,
-        "feeds": feeds or []
+        "feeds": feeds or [],
+        "calendar_event_ids": existing.get("calendar_event_ids", {}) if existing else {}
     }
 
     if existing:

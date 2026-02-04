@@ -7,3 +7,7 @@ dist/
 build/
 *.egg
 .pytest_cache/
+
+# Google Calendar credentials (sensitive)
+credentials.json
+token.json
