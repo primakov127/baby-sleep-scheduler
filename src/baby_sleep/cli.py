@@ -300,11 +300,27 @@ def sync(setup: bool, calendar_id: str):
     today["calendar_event_ids"] = event_ids
     data.save_data(sleep_data)
 
+    # Update yesterday's night sleep with actual wake time
+    yesterday = data.get_yesterday(sleep_data)
+    yesterday_updated = False
+    if yesterday and yesterday.get("night_sleep") and yesterday.get("calendar_event_ids", {}).get("night"):
+        try:
+            yesterday_updated = calendar.update_night_sleep_with_actual_wake(
+                service,
+                calendar_id,
+                yesterday,
+                today["morning_wake"]
+            )
+        except Exception:
+            pass  # Don't fail sync if yesterday update fails
+
     # Report results
     naps_synced = sum(1 for k in event_ids if k.startswith("nap_"))
     night_synced = "night" in event_ids
 
     display.success("Calendar sync complete!")
+    if yesterday_updated:
+        display.info(f"  Yesterday's night sleep updated (actual wake: {today['morning_wake']})")
     if naps_synced:
         display.info(f"  Naps synced: {naps_synced}")
     if night_synced:

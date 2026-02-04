@@ -353,6 +353,54 @@ def sync_day_to_calendar(
     return event_ids
 
 
+def update_night_sleep_with_actual_wake(
+    service,
+    calendar_id: str,
+    yesterday_data: dict[str, Any],
+    actual_wake_time: str
+) -> bool:
+    """
+    Update yesterday's night sleep event with actual wake time.
+
+    Args:
+        service: Google Calendar API service
+        calendar_id: Target calendar ID
+        yesterday_data: Yesterday's day record
+        actual_wake_time: Today's actual wake time (HH:MM)
+
+    Returns:
+        True if event was updated, False otherwise
+    """
+    event_id = yesterday_data.get("calendar_event_ids", {}).get("night")
+    if not event_id:
+        return False
+
+    night_sleep_time = yesterday_data.get("night_sleep")
+    if not night_sleep_time:
+        return False
+
+    yesterday_date = date.fromisoformat(yesterday_data["date"])
+    today_date = yesterday_date + timedelta(days=1)
+
+    night_start = _parse_time_for_date(night_sleep_time, yesterday_date)
+    wake_end = _parse_time_for_date(actual_wake_time, today_date)
+
+    # Calculate actual duration
+    duration_minutes = int((wake_end - night_start).total_seconds() / 60)
+    hours = duration_minutes // 60
+    mins = duration_minutes % 60
+
+    description = f"Duration: {hours}h {mins}m\nStatus: Actual"
+    description += f"\nActual wake: {actual_wake_time}"
+
+    title = "Baby Night Sleep"
+
+    return update_event(
+        service, calendar_id, event_id,
+        title, night_start, wake_end, COLOR_NIGHT, description
+    )
+
+
 def list_calendars(service) -> list[dict[str, str]]:
     """List available calendars. Returns list of {id, name} dicts."""
     try:

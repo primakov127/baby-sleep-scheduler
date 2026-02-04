@@ -1,7 +1,7 @@
 """Data loading and saving for baby sleep records."""
 
 import json
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
@@ -125,6 +125,18 @@ def add_day(
 
     data["days"].append(day)
     data["days"].sort(key=lambda d: d["date"])
+
+    return day
+
+
+def get_yesterday(data: dict[str, Any]) -> dict[str, Any] | None:
+    """Get yesterday's record if it exists."""
+    yesterday_str = (date.today() - timedelta(days=1)).isoformat()
+    day = get_day(data, yesterday_str)
+
+    # Ensure calendar_event_ids exists for older records
+    if day and "calendar_event_ids" not in day:
+        day["calendar_event_ids"] = {}
 
     return day
 
